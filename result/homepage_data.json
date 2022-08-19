@@ -1,0 +1,10 @@
+{
+    "start": 1660901828.5205967,
+    "script": "homepage.air",
+    "tests": {
+        "127.0.0.1:7555": {
+            "status": 0,
+            "path": "C:\\Users\\Joy\\Desktop\\Airtest\\homepage.air\\log\\127_0_0_1_7555\\log.html"
+        }
+    }
+}
