@@ -1,10 +1,14 @@
 {
-    "start": 1660901828.5205967,
+    "start": 1661095161.8959494,
     "script": "homepage.air",
     "tests": {
         "127.0.0.1:7555": {
             "status": 0,
-            "path": "C:\\Users\\Joy\\Desktop\\Airtest\\homepage.air\\log\\127_0_0_1_7555\\log.html"
+            "path": "D:\\Code\\Airtest\\homepage.air\\log\\127_0_0_1_7555\\log.html"
+        },
+        "HLRDU19807001907": {
+            "status": 0,
+            "path": "D:\\Code\\Airtest\\homepage.air\\log\\HLRDU19807001907\\log.html"
         }
     }
 }

@@ -163,9 +163,8 @@ def get_json_value_by_key(in_json, target_key, results=[]):
     return results
 
 #获取路径
-def get_path(content,device=None,air="openCard.air"):
+def get_path(content,device=None,air=None):
     root_path = os.getcwd()
-    path = os.getcwd()
     if content=="result":
         #返回测试报告路径
         path = os.path.join(root_path,"result")
@@ -178,7 +177,7 @@ def get_path(content,device=None,air="openCard.air"):
         path = log_dir
     elif content == "cases":
         #返回测试用例路径
-        path = os.path.join(root_path,air)
+        path = os.path.join(root_path,"Air_test_case")
     else:
         #返回根目录
         path = root_path
@@ -190,16 +189,23 @@ def get_cases(path):
     for name in os.listdir(get_path(path)):  # 遍历当前路径下的文件夹和文件名称
         if name.endswith(".air"):
             cases.append(name)
+    print(cases)
     return cases
 
-def sort_cases(cases,loginAir,outAir):
+# def sort_cases(cases,loginAir,outAir):
+#     #清除列表中的登录、退出登录，然后将其分别添加到列表的第一位和最后一位
+#     cases.remove(loginAir)
+#     cases.remove(outAir)
+#     cases.insert(0, loginAir)
+#     cases.insert(len(airs), outAir)
+#     return cases
+def sort_cases(cases):
     #清除列表中的登录、退出登录，然后将其分别添加到列表的第一位和最后一位
-    cases.remove(loginAir)
-    cases.remove(outAir)
-    cases.insert(0, loginAir)
-    cases.insert(len(airs), outAir)
+    # cases.remove(loginAir)
+    # cases.remove(outAir)
+    # cases.insert(0, loginAir)
+    # cases.insert(len(airs), outAir)
     return cases
-
 
 if __name__ == '__main__':
 
@@ -207,17 +213,26 @@ if __name__ == '__main__':
         初始化数据
         Init variables here
     """
+
+    #读取所有设备
+    Device_path = "devices_name.json"
+    with open(Device_path,"r",encoding="utf-8") as f:
+        All_device = json.load(f)
+    print(All_device)
     #获取所有已连接的设备列表
     # devices = [tmp[0] for tmp in ADB().devices()]
     #设置指定设备执行测试用例
-    devices = ["127.0.0.1:7555"]
+
+    devices = ["127.0.0.1:7555","HLRDU19807001907"]
     #获取所有测试用例
     airs = get_cases("root")
     #将登录用例排在最前面执行，退出用例排在最后面执行
     # sort_airs = sort_cases(airs,"loginPro.air","loginOutPro.air")
+    sort_airs = sort_cases(airs)
+
     #获取指定用例,按顺序执行
     # sort_airs = ["openCardPro.air","openOrderPro.air","quickMoneyPro.air"]
-    sort_airs = ["homepage.air"]
+    # sort_airs = ["homepage.air"]
 
     """
         执行脚本
